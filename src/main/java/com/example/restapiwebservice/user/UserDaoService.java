@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 // 도메인 정보를 이용해서 비즈니스 로직을 추가
@@ -37,6 +38,21 @@ public class UserDaoService {
                 return user;
             }
         }
+        return null;
+    }
+
+    public User deleteById(int id) {
+        Iterator<User> iterator = users.iterator();     // Iterator(열거형 타입): 배열, 리스트 형태의 데이터 값을 순차적으로 접근해서 사용
+
+        while (iterator.hasNext()) {
+            User user = iterator.next();
+
+            if (user.getId() == id) {
+                iterator.remove();
+                return user;
+            }
+        }
+
         return null;
     }
 }

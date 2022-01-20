@@ -32,7 +32,6 @@ public class UserController {
         if (user == null) {
             throw new UserNotFoundException(String.format("ID[%s] not found", id));
         }
-
         return user;
     }
 
@@ -51,5 +50,12 @@ public class UserController {
         return ResponseEntity.created(location).build();
     }
 
+    @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable int id) {
+        User user = service.deleteById(id);
 
+        if (user == null) {
+            throw new UserNotFoundException(String.format("ID[%s] not found", id));
+        }
+    }
 }
